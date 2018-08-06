@@ -6,5 +6,5 @@ public interface CommonDAO<T> {
 
 	void create(T object, String pass);
 	List<T> findAll();
-	T findByName(String name);
+	T findById(String name);
 }

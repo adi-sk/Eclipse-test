@@ -4,7 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class HashIt {
-	public String generateHash(String str){
+	public static String generateHash(String str){
 		
 		try {
             // Create MessageDigest instance for MD5

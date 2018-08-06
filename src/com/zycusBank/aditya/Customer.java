@@ -3,11 +3,13 @@ package com.zycusBank.aditya;
 import java.sql.Date;
 
 public class Customer {
+	private String id;
 	private String firstName;
 	private String lastName;
 	private String title;
 	private int age;
 	private Date dob;
+	private String pass; 
 	public Customer(String firstName, String lastName,String title,int age,Date dob) {
 		super();
 		this.firstName = firstName;
@@ -34,6 +36,12 @@ public class Customer {
 	public void setDob(Date dob) {
 		this.dob = dob;
 	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public Customer(){
 		
 	}
@@ -52,6 +60,12 @@ public class Customer {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	public String getPass() {
+		return pass;
+	}
+	public void setPass(String pass) {
+		this.pass = pass;
 	}
 	@Override
 	public String toString() {
