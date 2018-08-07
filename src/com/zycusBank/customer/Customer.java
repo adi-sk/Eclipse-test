@@ -1,4 +1,4 @@
-package com.zycusBank.aditya;
+package com.zycusBank.customer;
 
 import java.sql.Date;
 

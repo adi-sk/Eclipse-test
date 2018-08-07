@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.zycusBank.customer.Customer;
+import com.zycusBank.customer.CustomerDAO;
+
 /**
  * Servlet implementation class LoginServlet
  */
