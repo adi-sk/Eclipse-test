@@ -36,6 +36,8 @@ public class CustomerDAO implements CommonDAO<Customer> {
 			ps.executeUpdate();
 			System.out.println("Your Id is(use this id to login) : "+id);
 			
+			PreparedStatement pslog = con.prepareStatement("Insert into logs(msg)values('New customer Added name :"+ customer.getFirstName()+" Id : "+id+"')");
+			pslog.executeUpdate();
 			
 		}catch(SQLException ex) {
 			ex.printStackTrace();

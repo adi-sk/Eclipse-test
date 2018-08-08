@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div style="text-align: center; top: 50%;">
-		<form id="newAccount" action="new-account.do" method="post">
+		<form id="newCustomer" action="../add-customer.do" method="post">
 
 			First Name: <input type="text" name="firstName" onblur="validateFN()">
 			<h6 id="warningFN"></h6>
@@ -23,14 +23,16 @@
 			age : <input type="number" name="age"><br />
 			<br /> DOB: <input type="date" name="dob"><br />
 			<br /> Set Password : <input type="password" name="password">
+			
+			
 
-			<input id="addAccount" type="submit" value="Add Account" disabled>
+			<input id="addCustomer" type="submit" value="Add Customer" disabled>
 
 		</form>
 	</div>
 	<script>
-		var element = document.getElementById("addAccount");
-		var form = document.getElementById("newAccount");
+		var element = document.getElementById("addCustomer");
+		var form = document.getElementById("newCustomer");
 		function validateFN() {
 			var fnameL = form.elements[0].value.length;
 			if (fnameL < 2) {
@@ -64,7 +66,7 @@
 						+ titleArray[2] + "/" + titleArray[3]
 			} else {
 				document.getElementById("warningTitle").innerHTML = "";
-				document.getElementById("addAccount").disabled = false;
+				document.getElementById("addCustomer").disabled = false;
 			}
 
 		}

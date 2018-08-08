@@ -13,16 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.zycusBank.aditya.HashIt;
 
 /**
- * Servlet implementation class NewAccountServlet
+ * Servlet implementation class AddCustomerServlet
  */
-@WebServlet("/new-account.do")
-public class NewCustomerServlet extends HttpServlet {
+@WebServlet("/add-customer.do")
+public class AddCustomerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NewCustomerServlet() {
+    public AddCustomerServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -54,7 +54,7 @@ public class NewCustomerServlet extends HttpServlet {
 		
 		String hashPass = hash.generateHash(request.getParameter("password"));
 		System.out.println(hashPass);
-		CustomerDAO custD = new CustomerDAO(); 
+		CustomerDAO custD = new CustomerDAO();
 		
 		if(firstName == null || firstName.equals("") || lastName == null || lastName.equals("") || title == null || title.equals("") || firstName == null){
 			

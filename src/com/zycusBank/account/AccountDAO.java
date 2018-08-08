@@ -71,19 +71,54 @@ public class AccountDAO {
 	}
 
 	
-	public Account findAccount(String accountCode) {
+	public Account findAccountByCode(String accountNo,String bankCode,String branchCode) {
 		
 		try(Connection con = ConnectionUtil.getConnection()){
-			PreparedStatement ps = con.prepareStatement("select accountCode,accountName from accounts where accountCode = ? ");
-			ps.setString(1, accountCode);
+			PreparedStatement ps = con.prepareStatement("select accountNo,accountType,bankCode,branchCode,customerId,balance from accounts where accountNo = ? AND bankCode = ? AND branchCode = ?");
+			ps.setString(1, accountNo);
+			ps.setString(2, bankCode);
+			ps.setString(3, branchCode);
 			ResultSet rs = ps.executeQuery();
 			Account account = new Account();
 			if(rs.next()) {
 				account.setAccountNo(rs.getString("accountCode"));
-				account.setAccountName(rs.getString("accountName"));
+				account.setAccountType(rs.getString("accountType"));
+				account.setBankCode(rs.getString("bankCodeCode"));
+				account.setBranchCode(rs.getString("branchCode"));
+				account.setCustomerId(rs.getString("customerId"));
+				account.setBalance(rs.getDouble("balance"));
+				
 				
 			}
 			return account;
+		}catch(SQLException ex) {
+			ex.printStackTrace();
+			return null;
+		}
+	}
+	
+	public List<Account> findAccountByCustomerId(String customerId) {
+		
+		List<Account> accounts = new LinkedList<>();
+		try(Connection con = ConnectionUtil.getConnection()){
+			
+			PreparedStatement ps = con.prepareStatement("select accountNo,accountType,bankCode,branchCode,customerId,balance from accounts where customerId = ?");
+			ps.setString(1, customerId);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Account account = new Account();
+				
+				account.setAccountNo(rs.getString(1));
+				account.setAccountType(rs.getString(2));
+				account.setBankCode(rs.getString(3));
+				account.setBranchCode(rs.getString(4));
+				account.setCustomerId(rs.getString(5));
+				account.setBalance(rs.getDouble(6));
+				accounts.add(account);
+			}
+			
+			return accounts;
 		}catch(SQLException ex) {
 			ex.printStackTrace();
 			return null;
