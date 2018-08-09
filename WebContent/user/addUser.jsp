@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div style="text-align: center; top: 50%;">
-		<form id="newCustomer" action="../add-customer.do" method="post">
+		<form id="newUser" action="../add-user.do" method="post">
 
 			First Name: <input type="text" name="firstName" onblur="validateFN()">
 			<h6 id="warningFN"></h6>
@@ -19,6 +19,14 @@
 			Title : <input id="title" type="text" name="title"
 				onblur="validateTitle()">
 			<h6 id="warningTitle"></h6>
+			
+			
+			Role : 
+			<select name="userRole" id="userRole">
+				<option value="BANK_ADMIN">Bank_admin</option>
+				<option value="BRANCH_ADMIN">Branch_admin</option>
+				<option value="CUSTOMER">Customer</option>
+			</select>
 
 			age : <input type="number" name="age"><br />
 			<br /> DOB: <input type="date" name="dob"><br />
@@ -26,13 +34,16 @@
 			
 			
 
-			<input id="addCustomer" type="submit" value="Add Customer" disabled>
+			<input id="addUser" type="submit" value="Add User" disabled>
 
 		</form>
+		
+		
+		
 	</div>
 	<script>
-		var element = document.getElementById("addCustomer");
-		var form = document.getElementById("newCustomer");
+		var element = document.getElementById("addUser");
+		var form = document.getElementById("newUser");
 		function validateFN() {
 			var fnameL = form.elements[0].value.length;
 			if (fnameL < 2) {
@@ -66,7 +77,7 @@
 						+ titleArray[2] + "/" + titleArray[3]
 			} else {
 				document.getElementById("warningTitle").innerHTML = "";
-				document.getElementById("addCustomer").disabled = false;
+				document.getElementById("addUser").disabled = false;
 			}
 
 		}

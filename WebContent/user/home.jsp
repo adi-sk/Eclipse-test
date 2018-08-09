@@ -1,3 +1,4 @@
+<%@page import="com.zycusBank.user.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -8,8 +9,25 @@
 </head>
 <body>
 	<h2>Thank you for log in</h2>
-	<form action="logout.do">
+	<form action="../logout.do" method="post">
 		<input type="submit" value="Log out">
 	</form>
+	
+	<%! User user; %>
+	
+	<% 
+		if(session.getAttribute("user") == null){
+			response.sendRedirect("../login.html");
+		}
+		else{
+			user = (User)session.getAttribute("user");
+			out.print("<h2>Hello :"+ user.getFirstName()+"</h2>");
+		}
+	
+		
+	
+	%>
+	
+	
 </body>
 </html>
