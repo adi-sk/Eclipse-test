@@ -22,9 +22,7 @@
 		else{
 			user = (User)session.getAttribute("user");
 			out.print("<h2>Hello :"+ user.getFirstName()+"</h2>");
-		}
-	
-		
+		}	
 	
 	%>
 	

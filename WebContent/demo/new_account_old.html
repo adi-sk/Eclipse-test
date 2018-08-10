@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>SBI - Open New Account</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		
+		<style>
+			nav{
+				background-color: #f2f2f2 !important;
+			}
+			img.img-fluid{
+				height: 20px;
+				margin-right: 20px;
+			}
+			h2{
+				margin-top: 100px;
+				text-align: center;
+				margin-bottom: 30px;
+			}
+			p{
+				box-sizing: border-box;
+				padding: 20px;
+				text-align: center;
+			}
+			div.footer{
+				width: 100%;
+				background-color: #f2f2f2;
+				position:fixed;
+				bottom: 0px;
+				left: 0px;
+				padding-top: 20px;
+				padding-bottom: 20px;
+			}
+			#home{
+				color: rgb(0, 0, 0, 0.5);
+			}
+			#new{
+				color: rgb(0, 0, 0, 1);
+			}
+			#bills{
+				color: rgb(0, 0, 0, 0.5);
+			}
+			.col-xl-8{
+				float: none;
+				margin: 0 auto;
+			}
+			div.alert{
+				display: none;
+			}
+		</style>
+		<script src="jquery-3.3.1.min.js"></script>
+		<script src="popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-light">
+			  <a class="navbar-left" href="#"><img src="logo.png" class="img-fluid" alt="Responsive image"></a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+				  <li class="nav-item active">
+					<a class="nav-link" href="index.html" id="home">Home</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#" id="new">New Account</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="pay_bills.html" id="bills">Pay Bills</a>
+				  </li>
+				</ul>
+			  </div>
+			</nav>
+			<div class="row">
+				<div class="col-xl-8">
+					<h2>SBI - Open New Account</h2>
+					<form>
+					  <div class="form-group">
+						<label for="formGroupExampleInput">Full Name</label>
+							<div class="row">
+								<div class="col">
+								  <div class="input-group">
+								  <div class="input-group-prepend">
+									<button class="btn btn-primary dropdown-toggle" id="ddBtn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
+									<div class="dropdown-menu" id="title_dd">
+									  <a class="dropdown-item" href="#">Mr</a>
+									  <a class="dropdown-item" href="#">Ms</a>
+									  <a class="dropdown-item" href="#">Mrs</a>
+									  <a class="dropdown-item" href="#">Dr</a>
+									</div>
+								  </div>
+								  <input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="First Name" id="fName">
+								</div>
+								</div>
+								<div class="col">
+								  <input type="text" class="form-control" placeholder="Last name" id="lName">
+								</div>
+							</div>
+					  </div>
+					  <div class="form-group">
+						<label for="formGroupExampleInput2">Age</label>
+						<input type="text" class="form-control" placeholder="Enter your age" id="age">
+					  </div>
+					  <div class="form-group">
+						<label for="formGroupExampleInput2">Date of Birth</label>
+						<input type="date" class="form-control" id="dob">
+					  </div>
+					  
+					<div class="alert alert-success" id="success"></div>
+					
+					<div class="alert alert-danger" id="fail"></div>
+					  
+					  <div class="col-xl-12 text-center"> 
+						<button type="button" class="btn btn-primary" id="submitBtn">Create Account</button>
+					  </div>
+					</form>
+				</div>
+			</div>
+			<div class="footer">
+				<div class="footer-copyright text-center py-3">&copy; 2018 Copyright<a href="#"> Amar Pawar</a>
+				</div>
+			</div>
+		</div>
+		
+		<script>
+			$("#title_dd a").click(function(e){
+				e.preventDefault(); // cancel the link behaviour
+				var selText = $(this).text();
+				$("#ddBtn").text(selText);
+			});
+			
+			$("#submitBtn").click(function(e){
+				var title = $("#ddBtn").text();
+				var firstName = $("#fName").val();
+				var lastName = $("#lName").val();
+				var age = $("#age").val();
+				var dob = $("#dob").val();
+				
+				console.log(title, firstName, lastName, age, dob);
+				
+				var formData = new FormData();
+				formData.append("title", title);
+				formData.append("firstName", firstName);
+				formData.append("lastName", lastName);
+				formData.append("age", age);
+				formData.append("dob", dob);
+				
+				var xhr = new XMLHttpRequest();
+				
+				xhr.open("POST", "new-account.do");
+				
+				xhr.onreadystatechange = function(){
+					var DONE = 4;
+					var OK = 200;
+					
+					if (xhr.readState == DONE)
+					{
+						if (xhr.status == OK)
+						{
+							console.log(xhr.responseText);
+						}
+						else
+						{
+							console.log(xhr.status);
+						}
+					}
+				});
+				
+				xhr.send(formData);
+			});
+		</script>
+	</body>
+</html>
