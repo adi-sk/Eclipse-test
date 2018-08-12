@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>SBI - Open New Account</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		
+		<style>
+			nav{
+				background-color: #f2f2f2 !important;
+			}
+			img.img-fluid{
+				height: 20px;
+				margin-right: 20px;
+			}
+			h2{
+				margin-top: 100px;
+				text-align: center;
+				margin-bottom: 30px;
+			}
+			p{
+				box-sizing: border-box;
+				padding: 20px;
+				text-align: center;
+			}
+			div.footer{
+				width: 100%;
+				background-color: #f2f2f2;
+				position:fixed;
+				bottom: 0px;
+				left: 0px;
+				padding-top: 20px;
+				padding-bottom: 20px;
+			}
+			#home{
+				color: rgb(0, 0, 0, 0.5);
+			}
+			#new{
+				color: rgb(0, 0, 0, 0.5);
+			}
+			#bills{
+				color: rgb(0, 0, 0, 1);
+			}
+			.col-xl-8{
+				float: none;
+				margin: 0 auto;
+			}
+			div.dropdown{
+				width: 300px !important;
+			}
+			.btn{
+				width: 300px !important;
+			}
+			.dropdown-menu{
+				width: 300px;
+			}
+			#dd1{
+				display: none;
+			}
+			#dd2{
+				display: none;
+			}
+		</style>
+		<script src="jquery-3.3.1.min.js"></script>
+		<script src="popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-light">
+			  <a class="navbar-left" href="#"><img src="logo.png" class="img-fluid" alt="Responsive image"></a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+				  <li class="nav-item active">
+					<a class="nav-link" href="index.html" id="home">Home</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="new_account.html" id="new">New Account</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="#" id="bills">Pay Bills</a>
+				  </li>
+				</ul>
+			  </div>
+			</nav>
+			<div class="row">
+				<div class="col-xl-8">
+					<h2>SBI - Pay your Bills</h2>
+					<form>
+					  <div class="form-group">
+							<div class="row">
+								<div class="col">
+									<label>Bill Type</label>
+									<div class="dropdown">
+									  <button class="btn btn-primary dropdown-toggle"
+											  type="button" id="dropdownMenuBtn1" data-toggle="dropdown"
+											  aria-haspopup="true" aria-expanded="false">Select Bill Type</button>
+									  <div class="dropdown-menu" aria-labelledby="dropdownMenu1" id="type_dd">
+										<a class="dropdown-item" href="#!" id="electric">Electric</a>
+										<a class="dropdown-item" href="#!" id="phone">Phone</a>
+									  </div>
+									</div>
+								</div>
+								<div class="col">
+								  <label>Provider</label>
+									<div class="dropdown" id="default_dd">
+									  <button class="btn btn-primary dropdown-toggle"
+											  type="button" id="dropdownMenuBtn2" data-toggle="dropdown"
+											  aria-haspopup="true" aria-expanded="false">
+										Select Provider
+									  </button>
+									</div>
+									<div class="dropdown" id="dd1">
+									  <button class="btn btn-primary dropdown-toggle"
+											  type="button" id="dropdownMenuBtn3" data-toggle="dropdown"
+											  aria-haspopup="true" aria-expanded="false" id="dd1_btn">
+										Select Provider
+									  </button>
+									  <div class="dropdown-menu" aria-labelledby="dropdownMenu1" id="ele_provider">
+										<a class="dropdown-item" href="#!">MSEB</a>
+										<a class="dropdown-item" href="#!">Tata</a>
+										<a class="dropdown-item" href="#!">Reliance</a>
+									  </div>
+									</div>
+									<div class="dropdown" id="dd2">
+									  <button class="btn btn-primary dropdown-toggle"
+											  type="button" id="dropdownMenuBtn4" data-toggle="dropdown"
+											  aria-haspopup="true" aria-expanded="false" id="dd2_btn">
+										Select Provider
+									  </button>
+									  <div class="dropdown-menu" aria-labelledby="dropdownMenu1" id="phone_provider">
+										<a class="dropdown-item" href="#!">MTNL</a>
+										<a class="dropdown-item" href="#!">JIO</a>
+										<a class="dropdown-item" href="#!">Airtel</a>
+										<a class="dropdown-item" href="#!">Vodafone</a>
+										<a class="dropdown-item" href="#!">Idea</a>
+									  </div>
+									</div>
+								</div>
+							</div>
+					  </div>
+					  <div class="form-group">
+						<label for="formGroupExampleInput2">Account Number</label>
+						<input type="text" class="form-control" placeholder="Enter your Account Number" id="acc_no">
+					  </div>
+					  <div class="form-group">
+						<label for="formGroupExampleInput2">Amount</label>
+						<input type="text" class="form-control" id="amount" placeholder="Enter Amount">
+					  </div>
+					  <div class="col-xl-12 text-center"> 
+						<button type="button" class="btn btn-primary" id="submitBtn">Create Account</button>
+					  </div>
+					</form>
+				</div>
+			</div>
+			<div class="footer">
+				<div class="footer-copyright text-center py-3">&copy; 2018 Copyright
+				</div>
+			</div>
+		</div>
+		
+		<script>
+		
+			var billType = "none";
+			var provider = "none";
+			
+			$("#type_dd a").click(function(e){
+				e.preventDefault(); // cancel the link behaviour
+				var selText = $(this).text();
+				$("#ddBtn").text(selText);
+				
+				provider = "none";
+				
+				billType = selText;
+				$("#dropdownMenuBtn1").text(selText);
+				if (selText == "Electric")
+				{
+					$("#dd1").css("display", "block");
+					$("#dd2").css("display", "none");
+					$("#default_dd").css("display", "none");
+				}
+				else
+				{
+					$("#dd1").css("display", "none");
+					$("#dd2").css("display", "block");
+					$("#default_dd").css("display", "none");
+				}
+			});
+			
+			$("#ele_provider a").click(function(e){
+				e.preventDefault();
+				var selText = $(this).text();
+				$("#dropdownMenuBtn3").text(selText);
+				$("#dropdownMenuBtn4").text("Select Provider");
+				provider = selText;
+			});
+			
+			$("#phone_provider a").click(function(e){
+				e.preventDefault();
+				var selText = $(this).text();
+				$("#dropdownMenuBtn3").text("Select Provider");
+				$("#dropdownMenuBtn4").text(selText);
+				provider = selText;
+			});
+			
+			$("#submitBtn").click(function(e){
+				var accNo = $("#acc_no").val();
+				var amount = $("#amount").val();
+				
+				console.log(billType, provider, accNo, amount);
+			});
+		</script>
+	</body>
+</html>

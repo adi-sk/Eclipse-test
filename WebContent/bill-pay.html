@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<div style="text-align: center;">
+		<form action="pay-bills.do" method="post">
+			<h2>Bill Type</h2>
+			<input type="radio" name="billType" value="electricBill" onclick="stateChanged(this.value)" checked/>ElectricBill
+			<input type="radio" name="billType" value="phoneBill" onclick="stateChanged(this.value)"/>Phone Bill<br />
+			<br /> <br />
+
+			<h2>Select Provider:</h2>
+			
+			<select name="providerElectric" id="providerElectric">
+				<option value="MSEB">MSEB</option>
+				<option value="Tata">Tata</option>
+				<option value="Reliance">Reliance</option>
+			</select>
+		
+			<select name="providerPhone" id="providerPhone" style="display: none;">
+				<option value="MTNL">MTNL</option>
+				<option value="Jio">Jio</option>
+				<option value="Airtel">Airtel</option>
+				<option value="Vodafone">Vodafone</option>
+				<option value="Idea">Idea</option>
+
+			</select>
+
+			<h2>Enter Amount</h2>
+			<input type="number" value=0><br /> <br /> <input
+				type="submit" value="Pay"><br /> <br />
+		</form>
+	</div>
+	<script type="text/javascript">
+		function stateChanged(value){
+			if(value.localeCompare("phoneBill") == 0)
+			{
+				document.getElementById("providerPhone").style.display = "block";
+				document.getElementById("providerPhone").style.textAlign = "center";
+				document.getElementById("providerElectric").style.display = "none";
+			}
+			else{
+				document.getElementById("providerElectric").style.display = "block";
+				document.getElementById("providerElectric").style.textAlign = "center";
+				document.getElementById("providerPhone").style.display = "none";
+				
+			}
+		}
+	</script>
+</body>
+</html>
