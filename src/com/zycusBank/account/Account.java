@@ -4,17 +4,18 @@ package com.zycusBank.account;
 
 public class Account implements Comparable<Account>{
 	private String accountNo ;
-	private String accountType;
+	private AccountType accountType;
 	private String bankCode;
 	private String branchCode;
 	private String customerId;
 	private double balance ;
+	private AccountStatus status;
 	
 	
 	
 	
-	public Account(String accountNo, String accountType, String bankCode, String branchCode, String customerId,
-			double balance) {
+	public Account(String accountNo, AccountType accountType, String bankCode, String branchCode, String customerId,
+			double balance, AccountStatus status) {
 		super();
 		this.accountNo = accountNo;
 		this.accountType = accountType;
@@ -22,6 +23,7 @@ public class Account implements Comparable<Account>{
 		this.branchCode = branchCode;
 		this.customerId = customerId;
 		this.balance = balance;
+		this.status = status;
 		
 	}
 	
@@ -42,18 +44,21 @@ public class Account implements Comparable<Account>{
 	}
 
 
-
-	public String getAccountType() {
+	public AccountType getAccountType() {
 		return accountType;
 	}
 
-
-
-	public void setAccountType(String accountType) {
+	public void setAccountType(AccountType accountType) {
 		this.accountType = accountType;
 	}
 
+	public AccountStatus getStatus() {
+		return status;
+	}
 
+	public void setStatus(AccountStatus status) {
+		this.status = status;
+	}
 
 	public String getBankCode() {
 		return bankCode;

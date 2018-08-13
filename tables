@@ -1,0 +1,54 @@
+create table users(
+	id varchar(35),
+	firstName varchar(15),
+	lastName varchar(15),
+	title varchar(3),
+	age integer,
+	dob date,
+	aadhaarNo varchar(20),
+	pass varchar(35),
+	role integer,
+	primary key(id)
+);
+
+create table Banks(
+	bankCode varchar(4),
+	bankName varchar(15),
+	primary key(bankCode)
+);
+
+create table branches(
+	branchCode varchar(3),
+	bankCode varchar(4),
+	branchName varchar(15),
+	foreign key(bankCode) references Banks(bankCode)
+);
+
+create table accounts(
+	accountNo varchar(6),
+	accountType integer;
+	bankCode varchar(4),
+	branchCode varchar(3),
+	customerId varchar(35),
+	balance double,
+	status integer
+	foreign key(bankCode) references banks(bankCode),
+	foreign key(customerId) references users(id)
+);
+
+create table logs(
+	mdg varchar(100),
+	level integer;
+	customerId varchar(35),
+	bankCode varchar(4),
+	branchCode varchar(3),
+	transactionId varchar(30),
+	logtype integer,
+	foreign key(customerId) references users(id),
+	foreign key(bankCode) references Banks(bankCode)
+);
+
+
+
+
+

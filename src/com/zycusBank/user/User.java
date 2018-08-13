@@ -11,10 +11,11 @@ public class User {
 	private String title;
 	private int age;
 	private Date dob;
+	private String aadhaarNo;
 	private String pass;
 	private Role role;
 
-	public User(String firstName, String lastName, String title, int age, Date dob, Role role) {
+	public User(String firstName, String lastName, String title, int age, Date dob, Role role, String aadhaarNo) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -22,6 +23,7 @@ public class User {
 		this.age = age;
 		this.dob = dob;
 		this.role = role;
+		this.aadhaarNo = aadhaarNo;
 	}
 
 	public User() {
@@ -90,6 +92,14 @@ public class User {
 
 	public void setRole(Role role) {
 		this.role = role;
+	}
+
+	public String getAadhaarNo() {
+		return aadhaarNo;
+	}
+
+	public void setAadhaarNo(String aadhaarNo) {
+		this.aadhaarNo = aadhaarNo;
 	}
 
 	@Override

@@ -53,24 +53,25 @@ public class AddUserServlet extends HttpServlet {
 		// System.out.println(request.getParameter("dob"));
 		Date dob = Date.valueOf(request.getParameter("dob"));
 		Role role = Role.valueOf(request.getParameter("userRole"));
+		String aadhaarNo = request.getParameter("aadhaarNo");
 
 		HashIt hash = new HashIt();
 		System.out.println(request.getParameter("password"));
 
 		String hashPass = hash.generateHash(request.getParameter("password"));
 		System.out.println(hashPass);
-		UserDAO custD = new UserDAO();
+		UserDAO userD = new UserDAO();
 
-		if (firstName == null || firstName.equals("") || lastName == null || lastName.equals("") || title == null
+/*		if (firstName == null || firstName.equals("") || lastName == null || lastName.equals("") || title == null
 				|| title.equals("") || firstName == null) {
 
 			if (firstName.length() > 2 && lastName.length() > 2) {
 				response.sendRedirect("index.html");
 			}
 		}
-
+*/
 		PrintWriter out = response.getWriter();
-		custD.create(new User(firstName, lastName, title, age, dob, role), hashPass);
+		userD.create(new User(firstName, lastName, title, age, dob, role,aadhaarNo), hashPass);
 		out.println("Your account creation request is under process");
 	}
 

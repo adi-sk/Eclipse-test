@@ -24,7 +24,7 @@ public class AccountDAO {
 			
 			
 			ps.setString(1, account.getAccountNo());
-			ps.setString(2, account.getAccountType());
+			ps.setInt(2, account.getAccountType().ordinal());
 			ps.setString(3, account.getBankCode());
 			ps.setString(4, account.getBranchCode());
 			ps.setString(5, account.getCustomerId());
@@ -52,7 +52,7 @@ public class AccountDAO {
 				Account account = new Account();
 				
 				account.setAccountNo(rs.getString(1));
-				account.setAccountType(rs.getString(2));
+				account.setAccountType(AccountType.values()[rs.getInt(2)]);
 				account.setBankCode(rs.getString(3));
 				account.setBranchCode(rs.getString(4));
 				account.setCustomerId(rs.getString(5));
@@ -82,7 +82,7 @@ public class AccountDAO {
 			Account account = new Account();
 			if(rs.next()) {
 				account.setAccountNo(rs.getString("accountCode"));
-				account.setAccountType(rs.getString("accountType"));
+				account.setAccountType(AccountType.values()[rs.getInt("accountType")]);
 				account.setBankCode(rs.getString("bankCodeCode"));
 				account.setBranchCode(rs.getString("branchCode"));
 				account.setCustomerId(rs.getString("customerId"));
@@ -110,7 +110,7 @@ public class AccountDAO {
 				Account account = new Account();
 				
 				account.setAccountNo(rs.getString(1));
-				account.setAccountType(rs.getString(2));
+				account.setAccountType(AccountType.values()[rs.getInt(2)]);
 				account.setBankCode(rs.getString(3));
 				account.setBranchCode(rs.getString(4));
 				account.setCustomerId(rs.getString(5));

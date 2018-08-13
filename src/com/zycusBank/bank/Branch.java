@@ -3,10 +3,12 @@ package com.zycusBank.bank;
 public class Branch{
 	private String branchCode;
 	private String branchName;
-	public Branch(String branchCode, String branchName) {
+	private String bankCode;
+	public Branch(String branchCode, String branchName, String bankCode) {
 		super();
 		this.branchCode = branchCode;
 		this.branchName= branchName;
+		this.bankCode = bankCode;
 	}
 	
 	public Branch(){
@@ -24,10 +26,20 @@ public class Branch{
 	public void setBranchName(String branchName) {
 		this.branchName= branchName;
 	}
+	public String getBankCode() {
+		return bankCode;
+	}
+
+	public void setBankCode(String bankCode) {
+		this.bankCode = bankCode;
+	}
+
 	@Override
 	public String toString() {
-		return "Branch [branchCode=" + branchCode + ", branchName=" + branchName + "]";
+		return "Branch [branchCode=" + branchCode + ", branchName=" + branchName + ", bankCode=" + bankCode + "]";
 	}
+
+	
 	
 	
 	
