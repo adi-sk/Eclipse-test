@@ -9,18 +9,18 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String title;
-	private int age;
+	private String mobile;
 	private Date dob;
 	private String aadhaarNo;
 	private String pass;
 	private Role role;
 
-	public User(String firstName, String lastName, String title, int age, Date dob, Role role, String aadhaarNo) {
+	public User(String firstName, String lastName, String title, String mobile, Date dob, Role role, String aadhaarNo) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.title = title;
-		this.age = age;
+		this.mobile = mobile;
 		this.dob = dob;
 		this.role = role;
 		this.aadhaarNo = aadhaarNo;
@@ -38,12 +38,12 @@ public class User {
 		this.title = title;
 	}
 
-	public int getAge() {
-		return age;
+	public String getMobile() {
+		return mobile;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 
 	public Date getDob() {
@@ -104,7 +104,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "Customer [firstName=" + firstName + ", lastName=" + lastName + ", title=" + title + ", age=" + age
+		return "Customer [firstName=" + firstName + ", lastName=" + lastName + ", title=" + title + ", age=" + mobile
 				+ ", dob=" + dob + "]";
 	}
 

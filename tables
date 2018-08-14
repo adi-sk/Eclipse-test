@@ -3,9 +3,9 @@ create table users(
 	firstName varchar(15),
 	lastName varchar(15),
 	title varchar(3),
-	age integer,
+	mobile varchar(10),
 	dob date,
-	aadhaarNo varchar(20),
+	aadhaarNo varchar(12),
 	pass varchar(35),
 	role integer,
 	primary key(id)

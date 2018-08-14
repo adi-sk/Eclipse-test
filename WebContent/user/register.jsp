@@ -86,59 +86,78 @@
 			<div class="row">
 				<div class="col-xl-12">
 					<h2>Register User</h2>
-					<form>
+					<form action="../add-user.do" method="post">
 						<div class="form-group">
 							<label for="formGroupExampleInput">Full Name</label>
 								<div class="row">
+									<button class="btn btn-primary dropdown-toggle" id="ddBtnTitle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Title</button>
+									<div class="dropdown-menu" id="title_dd">
+										<a class="dropdown-item" href="#" id="MR">MR</a>
+										<a class="dropdown-item" href="#" id="MS">MS</a>
+										<a class="dropdown-item" href="#" id="MRS">MRS</a>
+										<a class="dropdown-item" href="#" id="DR">DR</a>
+									</div>
+									<input type="text"  id="title" name="title" hidden>
+									
 									<div class="col">
-										<input type="text" class="form-control" placeholder="First Name" id="fName">
+										<input type="text" class="form-control" placeholder="First Name" id="firstName" name="firstName">
 									</div>
 									<div class="col">
-										<input type="text" class="form-control" placeholder="Last name" id="lName">
+										<input type="text" class="form-control" placeholder="Last name" id="lastName" name="lastName">
 									</div>
 								</div>
 						</div>
+				
+						<div class="form-group">
+							<label for="formGroupExampleInput">Role</label>
+							<div class="input-group">
+								<div class="input-group-prepend">
+									<button class="btn btn-primary dropdown-toggle" id="ddBtnRole" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</button>
+									<div class="dropdown-menu" id="title_dd">
+										<a class="dropdown-item" href="#" id="BANK_ADMIN">Bank Admin</a>
+										<a class="dropdown-item" href="#" id="BRANCH_ADMIN">Branch Admin</a>
+										<a class="dropdown-item" href="#" id="CUSTOMER">Customer</a>
+									</div>
+								</div>
+								<input type="text" class="form-control" aria-label="Text input with dropdown button" placeholder="Select Role" id="userRole" name="userRole">
+							</div>
+						</div>
+						
 						<div class="form-group">
 							<div class="row">
 								<div class="col">
 									<label for="mob_no">Mobile Number</label>
-									<input type="text" class="form-control" placeholder="Mobile Number" id="mob_no">
-								</div>
-								<div class="col">
-									<label for="email_id">Email Id</label>
-									<input type="text" class="form-control" placeholder="Email Id" id="email_id">
+									<input type="text" class="form-control" placeholder="Mobile Number" id="mobile" name="mobile">
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="row">
 								<div class="col">
-									<label for="mob_no">Pan Number</label>
-									<input type="text" class="form-control" placeholder="PAN Number" id="pan_no">
-								</div>
-								<div class="col">
-									<label for="email_id">Aadhar Number</label>
-									<input type="text" class="form-control" placeholder="Aadhar Number" id="aadhar_no">
+									<label for="email_id">Aadhaar Number</label>
+									<input type="text" class="form-control" placeholder="Aadhar Number" id="aadhaarNo" name="aadhaarNo">
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="">Date of Birth</label>
-							<input type="date" class="form-control" id="dob">
-						</div>
-						<div class="form-group">
-							<label for="address">Address</label>
-							<input type="text" class="form-control" id="address" placeholder="Enter your Address">
+							<label for="dob">Date of Birth</label>
+							<input type="date" class="form-control" id="dob" name="dob">
 						</div>
 						<div class="form-group">
 							<label for="address">Profile Photo</label>
-							<input type="file" class="form-control-file" id="exampleFormControlFile1">
+							<input type="file" class="form-control-file" id="profilePic" name = "profilePic">
 						</div>
+						
+						<div class="form-group">
+							<label for="password">Set Password</label>
+							<input type="password" class="form-control" id="pass" name="password">
+						</div>
+						
 						<div class="alert alert-success" id="success"></div>
 						<div class="alert alert-danger" id="fail"></div>
 					  
 						<div class="col-xl-12 text-center"> 
-							<button type="button" class="btn btn-primary" id="submitBtn">Register</button>
+							<button type="submit" class="btn btn-primary" id="submitBtn">Register</button>
 						</div>
 					</form>
 				</div>
@@ -149,5 +168,42 @@
 				</div>
 			</div>
 		</div>
+		<script>
+		
+		$("#BANK_ADMIN").click(function(){
+			$("#userRole").val($("#BANK_ADMIN").attr("id"))
+		})
+		
+		$("#BRANCH_ADMIN").click(function(){
+			$("#userRole").val($("#BRANCH_ADMIN").attr("id"))
+		})
+		
+		$("#CUSTOMER").click(function(){
+			$("#userRole").val($("#CUSTOMER").attr("id"))
+		})
+		
+		$("#MR").click(function(){
+			$("#ddBtnTitle").html($("#MR").attr("id"))
+			$("#title").val($("#MR").attr("id"))
+		})
+		
+		$("#MS").click(function(){
+			$("#ddBtnTitle").html($("#MS").attr("id"))
+			$("#title").val($("#MS").attr("id"))
+		})
+		
+		$("#MRS").click(function(){
+			$("#ddBtnTitle").html($("#MRS").attr("id"))
+			$("#title").val($("#MRS").attr("id"))
+		})
+		
+		$("#DR").click(function(){
+			$("#ddBtnTitle").html($("#DR").attr("id"))
+			$("#title").val($("#DR").attr("id"))
+		})
+		
+		
+		</script>
+		
 	</body>
 </html>

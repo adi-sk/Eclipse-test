@@ -13,8 +13,8 @@ import com.zycusBank.enums.Role;
 
 public class UserDAO implements CommonDAO<User> {
 
-	private static final String SQL_SELECT = "SELECT firstName, lastName, title, age, dob, pass,role, id FROM users";
-	private static final String SQL_INSERT = "INSERT INTO users(firstName, lastName, title, age, dob, pass,role, id) values(?,?,?,?,?,?,?,?)";
+	private static final String SQL_SELECT = "SELECT firstName, lastName, title, mobile, dob, pass,role, id FROM users";
+	private static final String SQL_INSERT = "INSERT INTO users(firstName, lastName, title, mobile, dob, pass,role, id) values(?,?,?,?,?,?,?,?)";
 
 	@Override
 	public void create(User user, String pass) {
@@ -27,7 +27,7 @@ public class UserDAO implements CommonDAO<User> {
 			ps.setString(1, user.getFirstName());
 			ps.setString(2, user.getLastName());
 			ps.setString(3, user.getTitle());
-			ps.setInt(4, user.getAge());
+			ps.setString(4, user.getMobile());
 			ps.setDate(5, user.getDob());
 			ps.setString(6, pass);
 			ps.setInt(7, user.getRole().ordinal());
@@ -35,9 +35,12 @@ public class UserDAO implements CommonDAO<User> {
 			ps.executeUpdate();
 			System.out.println("Your Id is(use this id to login) : " + id);
 
-			PreparedStatement pslog = con.prepareStatement(
-					"Insert into logs(msg)values('New user Added name :" + user.getFirstName() + " Id : " + id + "')");
-			pslog.executeUpdate();
+			/*
+			 * PreparedStatement pslog = con.prepareStatement(
+			 * "Insert into logs(msg)values('New user Added name :" +
+			 * user.getFirstName() + " Id : " + id + "')");
+			 * pslog.executeUpdate();
+			 */
 
 		} catch (SQLException ex) {
 			ex.printStackTrace();
@@ -57,11 +60,11 @@ public class UserDAO implements CommonDAO<User> {
 				User user = new User();
 
 				user.setId(rs.getString("id"));
-				user.setFirstName(rs.getString(1));
-				user.setLastName(rs.getString(2));
-				user.setTitle(rs.getString(3));
-				user.setAge(rs.getInt(4));
-				user.setDob(rs.getDate(5));
+				user.setFirstName(rs.getString("firstName"));
+				user.setLastName(rs.getString("lastName"));
+				user.setTitle(rs.getString("title"));
+				user.setMobile(rs.getString("mobile"));
+				user.setDob(rs.getDate("dob"));
 				user.setPass(rs.getString("pass"));
 				user.setRole(Role.values()[rs.getInt("role")]);
 
@@ -91,7 +94,7 @@ public class UserDAO implements CommonDAO<User> {
 				user.setFirstName(rs.getString("firstName"));
 				user.setLastName(rs.getString("lastName"));
 				user.setTitle(rs.getString("title"));
-				user.setAge(rs.getInt("age"));
+				user.setMobile(rs.getString("mobile"));
 				user.setDob(rs.getDate("dob"));
 				user.setPass(rs.getString("pass"));
 				user.setRole(Role.values()[rs.getInt("role")]);
