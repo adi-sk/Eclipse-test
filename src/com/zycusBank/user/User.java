@@ -104,8 +104,11 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "Customer [firstName=" + firstName + ", lastName=" + lastName + ", title=" + title + ", age=" + mobile
-				+ ", dob=" + dob + "]";
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", title=" + title
+				+ ", mobile=" + mobile + ", dob=" + dob + ", aadhaarNo=" + aadhaarNo + ", pass=" + pass + ", role="
+				+ role + "]";
 	}
+
+	
 
 }

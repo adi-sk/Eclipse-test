@@ -48,6 +48,7 @@ create table logs(
 	foreign key(bankCode) references Banks(bankCode)
 );
 
+select * from users;
 
 
 
