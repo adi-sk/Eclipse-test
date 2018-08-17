@@ -13,7 +13,7 @@ import com.zycusBank.enums.Role;
 
 public class UserDAO implements CommonDAO<User> {
 
-	private static final String SQL_SELECT = "SELECT firstName, lastName, title, mobile, dob, pass,role, id FROM users";
+	private static final String SQL_SELECT = "SELECT firstName, lastName, title, mobile, dob, pass,role, id,aadhaarNo FROM users";
 	private static final String SQL_INSERT = "INSERT INTO users(firstName, lastName, title, mobile, dob, pass,role, id,aadhaarNo) values(?,?,?,?,?,?,?,?,?)";
 
 	@Override
@@ -33,7 +33,7 @@ public class UserDAO implements CommonDAO<User> {
 			ps.setInt(7, user.getRole().ordinal());
 			ps.setString(8, id);
 			ps.setString(9, user.getAadhaarNo());
-			
+
 			ps.executeUpdate();
 			System.out.println("Your Id is(use this id to login) : " + id);
 

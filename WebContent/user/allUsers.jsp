@@ -1,5 +1,9 @@
+<%@page import="com.zycusBank.user.UserDAO"%>
+<%@page import="com.zycusBank.user.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+ 
 <!DOCTYPE html>
 <html>
 	<head>
@@ -107,8 +111,8 @@
 				padding: 0;
 			}
 		</style>
-		<script src="jquery-3.3.1.min.js"></script>
-		<script src="popper.min.js"></script>
+		<script src="../js/jquery-3.3.1.min.js"></script>
+		<script src="../js/popper.min.js"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 	</head>
 	<body>
@@ -157,27 +161,46 @@
 						</div>
 						<div class="card" id="all_accounts_card">
 							<div class="card-header">
-								Your Accounts
+								All Users
 							</div>
 							<div class="card-body">
 								<table class="table table-bordered">
 									<thead>
 										<tr>
-											<th>Account Name</th>
-											<th>Account Number</th>
-											<th>Available Balance</th>
-											<th>Type</th>
-											<th>Status</th>
+											<th>id</th>
+											<th>Name</th>
+											<th>title</th>
+											<th>mobile</th>
+											<th>DOB</th>
+											<th>Aadhaar No</th>
+											<th>Role</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>Adi Kurhade</td>
-											<td>123456789</td>
-											<td>50000</td>
-											<td>Savings</td>
-											<td>Active</td>
-										</tr>
+<%	
+UserDAO userD = new UserDAO();
+
+for(User user : userD.findAll() ){
+	
+	if(user != null){
+		out.println("<tr>");
+		out.println("<td>"+user.getId()+"</td>");
+		out.println("<td>"+user.getFirstName()+" "+user.getLastName()+"</td>");
+		out.println("<td>"+user.getTitle()+"</td>");
+		out.println("<td>"+user.getMobile()+"</td>");
+		out.println("<td>"+user.getDob().toString()+"</td>");
+		out.println("<td>"+user.getAadhaarNo()+"</td>");
+		out.println("<td>"+user.getRole().name()+"</td>");
+		out.println("</tr>");
+	
+	}
+	
+} 									
+									
+										
+										
+										
+%>										
 									</tbody>
 								</table>
 							</div>
