@@ -11,8 +11,6 @@ create table users(
 	primary key(id)
 );
 
-
-
 create table Banks(
 	bankCode varchar(4),
 	bankName varchar(15),

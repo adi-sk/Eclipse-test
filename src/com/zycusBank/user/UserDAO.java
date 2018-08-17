@@ -14,7 +14,7 @@ import com.zycusBank.enums.Role;
 public class UserDAO implements CommonDAO<User> {
 
 	private static final String SQL_SELECT = "SELECT firstName, lastName, title, mobile, dob, pass,role, id FROM users";
-	private static final String SQL_INSERT = "INSERT INTO users(firstName, lastName, title, mobile, dob, pass,role, id) values(?,?,?,?,?,?,?,?)";
+	private static final String SQL_INSERT = "INSERT INTO users(firstName, lastName, title, mobile, dob, pass,role, id,aadhaarNo) values(?,?,?,?,?,?,?,?,?)";
 
 	@Override
 	public void create(User user, String pass) {
@@ -32,6 +32,8 @@ public class UserDAO implements CommonDAO<User> {
 			ps.setString(6, pass);
 			ps.setInt(7, user.getRole().ordinal());
 			ps.setString(8, id);
+			ps.setString(9, user.getAadhaarNo());
+			
 			ps.executeUpdate();
 			System.out.println("Your Id is(use this id to login) : " + id);
 
@@ -67,6 +69,7 @@ public class UserDAO implements CommonDAO<User> {
 				user.setDob(rs.getDate("dob"));
 				user.setPass(rs.getString("pass"));
 				user.setRole(Role.values()[rs.getInt("role")]);
+				user.setAadhaarNo(rs.getString("aadhaarNo"));
 
 				users.add(user);
 			}
@@ -98,6 +101,7 @@ public class UserDAO implements CommonDAO<User> {
 				user.setDob(rs.getDate("dob"));
 				user.setPass(rs.getString("pass"));
 				user.setRole(Role.values()[rs.getInt("role")]);
+				user.setAadhaarNo(rs.getString("aadhaarNo"));
 			}
 			return user;
 		} catch (SQLException ex) {

@@ -128,6 +128,7 @@
 								<div class="col">
 									<label for="mob_no">Mobile Number</label>
 									<input type="text" class="form-control" placeholder="Mobile Number" id="mobile" name="mobile">
+									<div class="alert alert-danger" id="failMobile">Please enter valid contact</div>
 								</div>
 							</div>
 						</div>
@@ -152,10 +153,10 @@
 							<label for="password">Set Password</label>
 							<input type="password" class="form-control" id="pass" name="password">
 						</div>
-						
-						<div class="alert alert-success" id="success"></div>
-						<div class="alert alert-danger" id="fail"></div>
-					  
+						<div class="form-group">
+							<div class="alert alert-success" id="success">SUCCESS</div>
+							<div class="alert alert-danger" id="fail"></div>
+					  	</div>
 						<div class="col-xl-12 text-center"> 
 							<button type="submit" class="btn btn-primary" id="submitBtn">Register</button>
 						</div>
@@ -169,6 +170,16 @@
 			</div>
 		</div>
 		<script>
+		
+		$("#mobile").blur(function() {
+			if($(this).val().length != 10){
+				$("#failMobile").show()
+				
+			}
+			else{
+				$("#failMobile").hide()
+			}
+		})
 		
 		$("#BANK_ADMIN").click(function(){
 			$("#userRole").val($("#BANK_ADMIN").attr("id"))
