@@ -11,6 +11,8 @@ create table users(
 	primary key(id)
 );
 
+
+
 create table Banks(
 	bankCode varchar(4),
 	bankName varchar(15),
@@ -48,6 +50,14 @@ create table logs(
 	foreign key(bankCode) references Banks(bankCode)
 );
 
+create table userBankRelation(
+	id varchar(35),
+	role integer,
+	bankCode varchar(4),
+	branchCode varchar(3),
+	foreign key(bankCode) references banks(bankCode),
+	foreign key(branchCode) references branches(branchCode)
+)
 
 
 
