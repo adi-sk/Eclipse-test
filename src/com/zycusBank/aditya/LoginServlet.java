@@ -55,8 +55,8 @@ public class LoginServlet extends HttpServlet {
 
 		// fetching required user using userId
 		User user = userD.findById(userId);
-
-		if (user.getId().equals(userId) && user.getPass().equals(HashIt.generateHash(pwd))) {
+		
+		if ( user != null && user.getId().equals(userId) && user.getPass().equals(HashIt.generateHash(pwd))) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			// setting session to expiry in 10 mins
@@ -65,7 +65,10 @@ public class LoginServlet extends HttpServlet {
 			userName.setMaxAge(2 * 60);
 			response.addCookie(userName);
 			response.sendRedirect("user/home.jsp");
-		} else {
+			} 
+	
+		
+		else {
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/login.html");
 			PrintWriter out = response.getWriter();
 			out.println("<font color=red>Either user name or password is wrong.</font>");

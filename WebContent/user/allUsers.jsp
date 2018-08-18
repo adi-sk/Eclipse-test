@@ -148,17 +148,10 @@
 				</div>
 			</nav>
 				<div class="col col-xl-12">
-					<div class="card" id="accounts_card">
-						<div class="card" id="balance_card">
-							<div class="card-header">
-								Total Balance
-							</div>
-							<div class="card-body">
-								<i class="fas fa-user" id="icon"></i>
-								<span id="savings">Savings</span>
-								<span>&#8377 0.0</span>
-							</div>
-						</div>
+					<div class="card" id="Users_card">
+						<div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: 81%" aria-valuenow="41" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
 						<div class="card" id="all_accounts_card">
 							<div class="card-header">
 								All Users

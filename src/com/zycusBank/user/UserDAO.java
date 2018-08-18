@@ -88,7 +88,7 @@ public class UserDAO implements CommonDAO<User> {
 
 		try (Connection con = ConnectionUtil.getConnection()) {
 			PreparedStatement ps = con.prepareStatement(
-					"select firstName, lastName, title, age, dob, pass,role, id from users where id = ? ");
+					"select firstName, lastName, title, mobile, dob, pass,role, id,aadhaarNo from users where id = ? ");
 			ps.setString(1, id);
 			ResultSet rs = ps.executeQuery();
 			User user = new User();
@@ -102,8 +102,10 @@ public class UserDAO implements CommonDAO<User> {
 				user.setPass(rs.getString("pass"));
 				user.setRole(Role.values()[rs.getInt("role")]);
 				user.setAadhaarNo(rs.getString("aadhaarNo"));
+				return user;
 			}
-			return user;
+			return null;
+			
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 			return null;

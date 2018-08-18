@@ -1,7 +1,3 @@
-h
-
-
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -104,11 +100,13 @@ h
 				</div>
 			</nav>
 			<div class="form">
+			<form action="login.do" method="post">
 				<h3>Please Sign In</h3>
-				<input type="text" class="form-control" id="user_id" placeholder="User Id">
-				<input type="password" class="form-control" id="password" placeholder="Password">
-				<button type="button" class="btn btn-primary">Login</button>
+				<input type="text" class="form-control" id="user_id" name="user"placeholder="User Id">
+				<input type="password" class="form-control" id="password" name="pwd" placeholder="Password">
+				<button type="submit" class="btn btn-primary">Login</button>
 				<!-- <p class="new_user">New User. <a href="user/register.html">Click here</a> -->
+			</form>
 			</div>
 			<div class="footer">
 				<div class="footer-copyright text-center py-3">&copy; 2018 Copyright
