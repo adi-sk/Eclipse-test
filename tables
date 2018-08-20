@@ -26,12 +26,12 @@ create table branches(
 
 create table accounts(
 	accountNo varchar(6),
-	accountType integer;
+	accountType integer,
 	bankCode varchar(4),
 	branchCode varchar(3),
 	customerId varchar(35),
 	balance double,
-	status integer
+	status integer,
 	foreign key(bankCode) references banks(bankCode),
 	foreign key(customerId) references users(id)
 );

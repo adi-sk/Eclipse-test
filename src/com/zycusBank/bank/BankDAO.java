@@ -16,7 +16,7 @@ public class BankDAO {
 	private static final String SQL_INSERT="insert into banks(bankCode,bankName) values(?,?)";
 
 	
-	public void create(Bank bank) {
+	public boolean create(Bank bank) {
 		
 
 		try(Connection con = ConnectionUtil.getConnection()){
@@ -28,10 +28,12 @@ public class BankDAO {
 	
 			ps.executeUpdate();
 			System.out.println("New Bank Added  : "+bank.getBankCode());
+			return true;
 			
 			
 		}catch(SQLException ex) {
 			ex.printStackTrace();
+			return false;
 		}
 		
 	}
