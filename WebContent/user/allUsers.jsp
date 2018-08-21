@@ -149,9 +149,6 @@
 			</nav>
 				<div class="col col-xl-12">
 					<div class="card" id="Users_card">
-						<div class="progress">
-  <div class="progress-bar" role="progressbar" style="width: 81%" aria-valuenow="41" aria-valuemin="0" aria-valuemax="100"></div>
-</div>
 						<div class="card" id="all_accounts_card">
 							<div class="card-header">
 								All Users

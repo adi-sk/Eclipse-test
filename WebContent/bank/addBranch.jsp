@@ -126,10 +126,10 @@ p.new_user {
 					<li class="nav-item active"><a class="nav-link"
 						href="addBranch.jsp" id="home">Branches</a></li>
 
-					<li class="nav-item active"><a class="nav-link" href="#"
+					<li class="nav-item active"><a class="nav-link" href="../user/allUsers.jsp"
 						id="home">Users</a></li>
 
-					<li class="nav-item active"><a class="nav-link" href="#"
+					<li class="nav-item active"><a class="nav-link" href="../user/assignUser.jsp"
 						id="home">Assign Users</a></li>
 				</ul>
 
