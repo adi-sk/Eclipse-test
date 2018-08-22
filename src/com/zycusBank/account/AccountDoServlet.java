@@ -1,4 +1,4 @@
-package com.zycusBank.user;
+package com.zycusBank.account;
 
 import java.io.IOException;
 
@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class UserDoServlet
+ * Servlet implementation class AccountDoServlet
  */
-@WebServlet("/user.do")
-public class UserDoServlet extends HttpServlet {
+@WebServlet("/account.do")
+public class AccountDoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public UserDoServlet() {
+	public AccountDoServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -40,22 +40,41 @@ public class UserDoServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
 		String action = request.getParameter("action");
 
-		String time = String.valueOf(System.nanoTime() % 1000000);
+		System.out.println("ACTION   : " + action);
 
 		switch (action) {
-		case "getCurrentTime":
-			response.setContentType("text/plain");
-			response.getWriter().write(String.valueOf(System.nanoTime() % 1000000));
-			response.setStatus(HttpServletResponse.SC_OK);
-
-			break;
+		case "addAccount":
+			if (addAccount(request)) {
+				response.setStatus(HttpServletResponse.SC_OK);
+				return;
+			} else {
+				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+				return;
+			}
 
 		default:
-			break;
+			System.out.println("Action can not be handled");
+			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+			return;
+
 		}
+
+	}
+
+	private boolean addAccount(HttpServletRequest request) {
+
+		AccountDAO accountD = new AccountDAO();
+		String type = request.getParameter("accountType");
+
+		System.out.println(type);
+
+		Account account = new Account(request.getParameter("accountNo"), AccountType.valueOf(type),
+				request.getParameter("bankCode"), request.getParameter("branchCode"),
+				request.getParameter("customerId"), 1000L, AccountStatus.ACTIVE);
+
+		return accountD.create(account);
 
 	}
 

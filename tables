@@ -53,8 +53,7 @@ create table userBankRelation(
 	role integer,
 	bankCode varchar(4),
 	branchCode varchar(3),
-	foreign key(bankCode) references banks(bankCode),
-	foreign key(branchCode) references branches(branchCode)
+	foreign key(bankCode) references banks(bankCode)
 )
 
 
