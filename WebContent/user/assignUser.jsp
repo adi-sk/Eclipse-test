@@ -100,10 +100,13 @@ p.new_user {
 </style>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/popper.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<!-- <script src ="../bootstrap/js/bootstrap.min.js"> -->
+
 </head>
 <body>
+
+	
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-light">
 			<a class="navbar-left" href="#"><img src="../logo.png"
@@ -156,10 +159,11 @@ p.new_user {
 							UserDAO userD = new UserDAO();
 							BankDAO bankD = new BankDAO();
 							for (User user : userD.findAll()) {
+								
 								out.println("<tr>");
 								out.println("<td>" + user.getId() + "</td>");
 								out.println("<td>" + user.getFirstName() + " " + user.getLastName() + "</td>");
-								out.println("<td>" + user.getRole().name() + "</td>");
+								out.println("<td id=\""+user.getId()+"_role\">" + user.getRole().name() + "</td>");
 								out.println("<td>");
 								out.println(
 
@@ -412,7 +416,26 @@ p.new_user {
 				})
 
 		$(".assignUser").click(function() {
-
+			
+			userId = $(this).attr("id").split("_")[0];
+			var posting = $.post("../user.do",{
+				action : "assignUser",
+				id : userId,
+				role : $("#"+userId+"_role").html(),
+				bankCode : $("#"+userId).html(),
+				branchCode : $("#"+userId+"_branchCode").html()
+				
+			})
+			
+			posting.done(function() {
+				alert("Assignment done")
+			})
+			
+			posting.fail(function() {
+				alert("something went wrong while assignment");
+			});
+			
+			
 		})
 
 		$(".accTypeDrop").click(function() {
@@ -428,6 +451,7 @@ p.new_user {
 				bankCode : $("#bankCodeModal").val(),
 				branchCode : $("#branchCodeModal").val(),
 				customerId : $("#customerIdModal").val(),
+				role :$("#"+$("#customerIdModal").val()+"_role").text(),
 				action : "addAccount"
 				
 			});

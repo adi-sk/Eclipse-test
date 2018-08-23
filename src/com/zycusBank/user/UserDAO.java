@@ -16,6 +16,8 @@ public class UserDAO implements CommonDAO<User> {
 	private static final String SQL_SELECT = "SELECT firstName, lastName, title, mobile, dob, pass,role, id,aadhaarNo FROM users";
 	private static final String SQL_INSERT = "INSERT INTO users(firstName, lastName, title, mobile, dob, pass,role, id,aadhaarNo) values(?,?,?,?,?,?,?,?,?)";
 
+	private static final String SQL_INSERT_USER_RELATION = "INSERT INTO userBankRelation(id,role,bankCode,branchCode) values(?,?,?,?)";
+
 	@Override
 	public void create(User user, String pass) {
 
@@ -105,11 +107,32 @@ public class UserDAO implements CommonDAO<User> {
 				return user;
 			}
 			return null;
-			
+
 		} catch (SQLException ex) {
 			ex.printStackTrace();
 			return null;
 		}
+	}
+
+	public boolean assignUser(String id, Role role, String bankCode, String branchCode) {
+
+		try (Connection con = ConnectionUtil.getConnection();
+				PreparedStatement ps = con.prepareStatement(SQL_INSERT_USER_RELATION);) {
+
+			ps.setString(1, id);
+			ps.setInt(2, role.ordinal());
+			ps.setString(3, bankCode);
+			ps.setString(4, branchCode);
+
+			ps.executeUpdate();
+
+			return true;
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+			return false;
+		}
+
 	}
 
 }

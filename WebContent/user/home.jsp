@@ -1,31 +1,170 @@
 <%@page import="com.zycusBank.user.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
-	<h2>Thank you for log in</h2>
-	<form action="../logout.do" method="post">
-		<input type="submit" value="Log out">
-	</form>
-	
+	<head>
+		<meta charset="utf-8">
+		<title>State Bank of India</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+		<style>
+			html{
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+			body{
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+			.container{
+				min-height: 100%;
+				box-sizing: border-box;
+				border: 1px solid #CCCCCC;
+				padding: 0 !important;
+				position: relative;
+				overflow-y: auto;
+				overflow-x: hidden;
+			}
+			nav{
+				width: 100%;
+				background-color: #f2f2f2 !important;
+			}
+			img.img-fluid{
+				height: 20px;
+				margin-right: 20px;
+			}
+			div.footer{
+				width: 100%;
+				background-color: #f2f2f2;
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+				padding-top: 20px;
+				padding-bottom: 20px;
+			}
+			li.nav-item{
+				padding-left: 10px;
+				padding-right: 10px;
+			}
+			#profile{
+				color: rgba(0, 0, 0, 1);
+			}
+			#transfer, #new_acc, #home{
+				color: rgba(0, 0, 0, 0.5);
+			}
+			div.main_row{
+				padding: 40px;
+			}
+			img#placeholder{
+				width: 150px;
+				height: 150px;
+			}
+			div.profile_container{
+				box-sizing: border-box;
+				margin-left: 20px;
+			}
+			div.profile_row{
+				box-sizing: border-box;
+				padding: 20px;
+				border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+			}
+			div.col-heading{
+				font-weight: bold;
+			}
+		</style>
+		<script src="jquery-3.3.1.min.js"></script>
+		<script src="popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	</head>
+	<body>
 	<%! User user; %>
 	
 	<% 
 		if(session.getAttribute("user") == null){
-			response.sendRedirect("../login.html");
+			response.sendRedirect("/"+request.getContextPath()+"/login.html");
 		}
 		else{
 			user = (User)session.getAttribute("user");
-			out.print("<h2>Hello :"+ user.getFirstName()+"</h2>");
 		}	
 	
 	%>
 	
 	
-</body>
+	
+		<div class="container">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<a class="navbar-left" href="#"><img src="../logo.png" class="img-fluid" alt="Responsive image"></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="home.html" id="home">Home</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#" id="profile">My Profile</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#" id="new_acc">New Account</a>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" id="payment">
+								Payment & Transfer
+							</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">Fund Transfer</a>
+								<a class="dropdown-item" href="#">Pay Bills</a>
+								<a class="dropdown-item" href="#">Recharge</a>
+							</div>
+						</li>
+					</ul>
+					<ul class="navbar-nav">
+						<li class="nav-item">
+							<a class="nav-link" href="../logout.do" id="logout">logout</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<div class="row main_row">
+				<div class="col col-xl-2">
+					<img class="img-thumbnail" src="../user_placeholder.png" alt="Thumbnail image" id="placeholder">
+				</div>
+				<div class="col col-xl-9 profile_container">
+					<div class="row profile_row">
+						<div class="col col-xl-3 col-heading">Name</div>
+						<div class="col col-xl-9"><%=user.getFirstName()%> <%=user.getLastName()%></div>
+					</div>
+					<div class="row profile_row">
+						<div class="col col-xl-3 col-heading">Mobile</div>
+						<div class="col col-xl-9"><%=user.getMobile() %></div>
+					</div>
+					<div class="row profile_row">
+						<div class="col col-xl-3 col-heading">Date Of Birth</div>
+						<div class="col col-xl-9"><%=user.getDob().toString() %></div>
+					</div>
+					<div class="row profile_row">
+						<div class="col col-xl-3 col-heading">Aadhaar No.</div>
+						<div class="col col-xl-9"><%=user.getAadhaarNo() %></div>
+					</div>
+					<div class="row profile_row">
+						<div class="col col-xl-3 col-heading">Role</div>
+						<div class="col col-xl-9"><%=user.getRole().name() %></div>
+					</div>
+					
+				</div>
+			</div>
+			<div class="footer">
+				<div class="footer-copyright text-center py-3">&copy; 2018 Copyright<a href="#"></a>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
+	

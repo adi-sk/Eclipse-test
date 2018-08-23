@@ -1,4 +1,4 @@
-package com.zycusBank.aditya;
+package com.zycusBank.routing;
 
 import java.io.IOException;
 
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class LogOutServlet
+ * Servlet implementation class ProfileRoutesServlet
  */
-@WebServlet("/logout.do")
-public class LogOutServlet extends HttpServlet {
+@WebServlet("/profile/*")
+public class ProfileRoutesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public LogOutServlet() {
+	public ProfileRoutesServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -30,14 +30,22 @@ public class LogOutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		System.out.println("Inside logout get Request");
+
 		HttpSession session = request.getSession(false);
-		if (session != null) {
-			session.invalidate();
+		// TODO Auto-generated method stub
+		if ((session == null) || (session.getAttribute("user") == null)) {
+			response.sendRedirect(request.getContextPath() + "/login.html");
+		} else {
+			System.out.println("login Successful");
+
+			switch (request.getPathInfo()) {
+
+			case "/home":
+				request.getRequestDispatcher("/user/home.jsp").forward(request, response);
+			}
+
 		}
 
-		response.sendRedirect("login.html");
 	}
 
 	/**
@@ -47,11 +55,7 @@ public class LogOutServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("Inside logout");
-		HttpSession session = request.getSession(false);
-		session.invalidate();
-		response.sendRedirect("login.html");
-
+		doGet(request, response);
 	}
 
 }

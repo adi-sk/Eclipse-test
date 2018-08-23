@@ -8,12 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.zycusBank.enums.Role;
+
 /**
  * Servlet implementation class UserDoServlet
  */
 @WebServlet("/user.do")
 public class UserDoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	UserDAO userD = new UserDAO();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -53,10 +57,33 @@ public class UserDoServlet extends HttpServlet {
 
 			break;
 
+		case "assignUser":
+			if (assignUser(request)) {
+				response.setStatus(HttpServletResponse.SC_OK);
+				return;
+			} else {
+				response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+				return;
+			}
+
 		default:
-			break;
+			System.out.println("Action can not be handled");
+			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+			return;
+
 		}
 
+	}
+
+	private boolean assignUser(HttpServletRequest request) {
+
+		Role role = Role.valueOf(request.getParameter("role"));
+
+		if (userD.assignUser(request.getParameter("id"), role, request.getParameter("bankCode"),
+				request.getParameter("branchCode"))) {
+			return true;
+		}
+		return false;
 	}
 
 }

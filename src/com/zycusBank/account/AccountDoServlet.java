@@ -8,12 +8,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.zycusBank.enums.Role;
+import com.zycusBank.user.UserDAO;
+
 /**
  * Servlet implementation class AccountDoServlet
  */
 @WebServlet("/account.do")
 public class AccountDoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	AccountDAO accountD = new AccountDAO();
+	UserDAO userD = new UserDAO();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -65,16 +71,22 @@ public class AccountDoServlet extends HttpServlet {
 
 	private boolean addAccount(HttpServletRequest request) {
 
-		AccountDAO accountD = new AccountDAO();
 		String type = request.getParameter("accountType");
 
 		System.out.println(type);
+		System.out.println("ROLE : " + request.getParameter("role"));
+		Role role = Role.valueOf(request.getParameter("role"));
 
 		Account account = new Account(request.getParameter("accountNo"), AccountType.valueOf(type),
 				request.getParameter("bankCode"), request.getParameter("branchCode"),
 				request.getParameter("customerId"), 1000L, AccountStatus.ACTIVE);
 
-		return accountD.create(account);
+		if (accountD.create(account)) {
+			return userD.assignUser(request.getParameter("customerId"), role, request.getParameter("bankCode"),
+					request.getParameter("branchCode"));
+		}
+
+		return false;
 
 	}
 
