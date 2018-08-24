@@ -42,6 +42,32 @@ public class ProfileRoutesServlet extends HttpServlet {
 
 			case "/home":
 				request.getRequestDispatcher("/user/home.jsp").forward(request, response);
+				return;
+
+			case "/banks":
+				request.getRequestDispatcher("/user/addBank.jsp").forward(request, response);
+				return;
+
+			case "/branches":
+				request.getRequestDispatcher("/user/addBranch.jsp").forward(request, response);
+				return;
+
+			case "/users":
+				request.getRequestDispatcher("/user/allUsers.jsp").forward(request, response);
+				return;
+
+			case "/assignUser":
+				request.getRequestDispatcher("/user/assignUser.jsp").forward(request, response);
+				return;
+
+			case "/userRegistration":
+				request.getRequestDispatcher("/user/register.jsp").forward(request, response);
+				return;
+
+			case "/accounts":
+				request.getRequestDispatcher("/user/myAccounts.jsp").forward(request, response);
+				return;
+
 			}
 
 		}

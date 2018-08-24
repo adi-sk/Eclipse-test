@@ -1,3 +1,4 @@
+<%@page import="com.zycusBank.services.Menu"%>
 <%@page import="com.zycusBank.user.UserDAO"%>
 <%@page import="com.zycusBank.user.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -144,6 +145,9 @@
 								<a class="dropdown-item" href="#">Recharge</a>
 							</div>
 						</li>
+						<%=Menu.printMenu(0) %>
+						
+						
 					</ul>
 				</div>
 			</nav>
