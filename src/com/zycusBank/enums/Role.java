@@ -1,5 +1,5 @@
 package com.zycusBank.enums;
 
 public enum Role {
-	CUSTOMER, BANK_ADMIN, BRANCH_ADMIN;
+	CUSTOMER,BRANCH_ADMIN,BANK_ADMIN,ADMIN;
 }

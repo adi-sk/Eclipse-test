@@ -1,4 +1,6 @@
 
+<%@page import="com.zycusBank.services.Menu"%>
+<%@page import="com.zycusBank.user.User"%>
 <%@page import="com.zycusBank.bank.Bank"%>
 <%@page import="com.zycusBank.bank.BankDAO"%>
 <%@page import="com.zycusBank.bank.Branch"%>
@@ -104,6 +106,19 @@ p.new_user {
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
+	
+	
+	<%
+		User user = null;
+		if(session.getAttribute("user") == null){
+			response.sendRedirect("/"+request.getContextPath()+"/login.html");
+		}
+		else{
+			user = (User)session.getAttribute("user");
+		}	
+	
+	%>
+
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-light">
 			<a class="navbar-left" href="#"><img src="../logo.png"
@@ -116,22 +131,7 @@ p.new_user {
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="#"
-						id="home">Home</a></li>
-
-					<li class="nav-item active"><a class="nav-link"
-						href="addBank.jsp" id="home">Banks</a></li>
-
-					<li class="nav-item active"><a class="nav-link"
-						href="addBranch.jsp" id="home">Branches</a></li>
-
-					<li class="nav-item active"><a class="nav-link" href="../user/allUsers.jsp"
-						id="home">Users</a></li>
-
-					<li class="nav-item active"><a class="nav-link" href="../user/assignUser.jsp"
-						id="home">Assign Users</a></li>
-				</ul>
+				<%=Menu.printMenu(user.getRole().ordinal()) %>
 
 			</div>
 		</nav>

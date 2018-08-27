@@ -41,15 +41,16 @@ public class ProfileRoutesServlet extends HttpServlet {
 			switch (request.getPathInfo()) {
 
 			case "/home":
+			case "/":	
 				request.getRequestDispatcher("/user/home.jsp").forward(request, response);
 				return;
 
 			case "/banks":
-				request.getRequestDispatcher("/user/addBank.jsp").forward(request, response);
+				request.getRequestDispatcher("/bank/addBank.jsp").forward(request, response);
 				return;
 
 			case "/branches":
-				request.getRequestDispatcher("/user/addBranch.jsp").forward(request, response);
+				request.getRequestDispatcher("/bank/addBranch.jsp").forward(request, response);
 				return;
 
 			case "/users":
@@ -66,7 +67,7 @@ public class ProfileRoutesServlet extends HttpServlet {
 
 			case "/accounts":
 				request.getRequestDispatcher("/user/myAccounts.jsp").forward(request, response);
-				return;
+				return;	
 
 			}
 

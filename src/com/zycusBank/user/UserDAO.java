@@ -11,14 +11,14 @@ import com.zycusBank.aditya.CommonDAO;
 import com.zycusBank.aditya.ConnectionUtil;
 import com.zycusBank.enums.Role;
 
-public class UserDAO implements CommonDAO<User> {
+public class UserDAO {
 
 	private static final String SQL_SELECT = "SELECT firstName, lastName, title, mobile, dob, pass,role, id,aadhaarNo FROM users";
 	private static final String SQL_INSERT = "INSERT INTO users(firstName, lastName, title, mobile, dob, pass,role, id,aadhaarNo) values(?,?,?,?,?,?,?,?,?)";
 
 	private static final String SQL_INSERT_USER_RELATION = "INSERT INTO userBankRelation(id,role,bankCode,branchCode) values(?,?,?,?)";
 
-	@Override
+	
 	public void create(User user, String pass) {
 
 		System.out.println(pass);
@@ -52,7 +52,7 @@ public class UserDAO implements CommonDAO<User> {
 
 	}
 
-	@Override
+	
 	public List<User> findAll() {
 		List<User> users = new LinkedList<>();
 		try (Connection con = ConnectionUtil.getConnection()) {
@@ -84,8 +84,43 @@ public class UserDAO implements CommonDAO<User> {
 		}
 
 	}
+	
+	
+	public List<User> findAllGreaterThanRole(int role) {
+		List<User> users = new LinkedList<>();
+		try (Connection con = ConnectionUtil.getConnection()) {
+			PreparedStatement ps = con.prepareStatement(SQL_SELECT +" WHERE role < ?");
 
-	@Override
+			ps.setInt(1, role);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				User user = new User();
+
+				user.setId(rs.getString("id"));
+				user.setFirstName(rs.getString("firstName"));
+				user.setLastName(rs.getString("lastName"));
+				user.setTitle(rs.getString("title"));
+				user.setMobile(rs.getString("mobile"));
+				user.setDob(rs.getDate("dob"));
+				user.setPass(rs.getString("pass"));
+				user.setRole(Role.values()[rs.getInt("role")]);
+				user.setAadhaarNo(rs.getString("aadhaarNo"));
+
+				users.add(user);
+			}
+
+			return users;
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+			return null;
+		}
+
+	}
+	
+
+	
 	public User findById(String id) {
 
 		try (Connection con = ConnectionUtil.getConnection()) {

@@ -60,9 +60,9 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			// setting session to expiry in 10 mins
-			session.setMaxInactiveInterval(2 * 60);
+			session.setMaxInactiveInterval(15 * 60);
 			Cookie userName = new Cookie("user", user.getId());
-			userName.setMaxAge(2 * 60);
+			userName.setMaxAge(15 * 60);
 			response.addCookie(userName);
 			response.sendRedirect(request.getContextPath() + "/profile/home");
 		}

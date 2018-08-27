@@ -1,3 +1,4 @@
+<%@page import="com.zycusBank.services.Menu"%>
 <%@page import="com.zycusBank.bank.Bank"%>
 <%@page import="com.zycusBank.bank.BankDAO"%>
 <%@page import="com.zycusBank.enums.Role"%>
@@ -105,7 +106,17 @@ p.new_user {
 
 </head>
 <body>
-
+	
+	<%
+		User userA = null ;
+		if(session.getAttribute("user") == null){
+			response.sendRedirect("/"+request.getContextPath()+"/login.html");
+		}
+		else{
+			userA = (User)session.getAttribute("user");
+		}	
+	
+	%>
 	
 	<div class="container">
 		<nav class="navbar navbar-expand-lg navbar-light">
@@ -119,22 +130,7 @@ p.new_user {
 			</button>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link"
-						href="../logs.jsp" id="home">Home</a></li>
-
-					<li class="nav-item active"><a class="nav-link"
-						href="addBank.jsp" id="home">Banks</a></li>
-
-					<li class="nav-item active"><a class="nav-link"
-						href="addBranch.jsp" id="home">Branches</a></li>
-
-					<li class="nav-item active"><a class="nav-link"
-						href="../user/allUsers.jsp" id="home">Users</a></li>
-
-					<li class="nav-item active"><a class="nav-link"
-						href="../user/assignUser.jsp" id="home">Assign Users</a></li>
-				</ul>
+				<%=Menu.printMenu(userA.getRole().ordinal()) %>
 			</div>
 		</nav>
 
@@ -158,7 +154,7 @@ p.new_user {
 						<%
 							UserDAO userD = new UserDAO();
 							BankDAO bankD = new BankDAO();
-							for (User user : userD.findAll()) {
+							for (User user : userD.findAllGreaterThanRole(userA.getRole().ordinal())) {
 								
 								out.println("<tr>");
 								out.println("<td>" + user.getId() + "</td>");

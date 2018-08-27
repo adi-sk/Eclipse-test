@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<%@page import="com.zycusBank.services.Menu"%>
+<%@page import="com.zycusBank.user.User"%>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -67,6 +69,17 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 	</head>
 	<body>
+		<%
+		User userA = null;
+		if(session.getAttribute("user") == null){
+			response.sendRedirect("/"+request.getContextPath()+"/login.html");
+		}
+		else{
+			userA = (User)session.getAttribute("user");
+		}	
+	
+	%>
+	
 		<div class="container">
 			<nav class="navbar navbar-expand-lg navbar-light">
 				<a class="navbar-left" href="#"><img src="../logo.png" class="img-fluid" alt="Responsive image"></a>
@@ -75,11 +88,7 @@
 				</button>
 
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active">
-							<a class="nav-link" href="index.html" id="home">Home</a>
-						</li>
-					</ul>
+					<%=Menu.printMenu(userA.getRole().ordinal()) %>
 				</div>
 			</nav>
 			

@@ -1,3 +1,4 @@
+<%@page import="com.zycusBank.services.Menu"%>
 <%@page import="com.zycusBank.user.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -104,32 +105,8 @@
 				</button>
 
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="navbar-nav mr-auto">
-						<li class="nav-item active">
-							<a class="nav-link" href="home.html" id="home">Home</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#" id="profile">My Profile</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#" id="new_acc">New Account</a>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" id="payment">
-								Payment & Transfer
-							</a>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" href="#">Fund Transfer</a>
-								<a class="dropdown-item" href="#">Pay Bills</a>
-								<a class="dropdown-item" href="#">Recharge</a>
-							</div>
-						</li>
-					</ul>
-					<ul class="navbar-nav">
-						<li class="nav-item">
-							<a class="nav-link" href="../logout.do" id="logout">logout</a>
-						</li>
-					</ul>
+					<%=Menu.printMenu(user.getRole().ordinal()) %>
+					
 				</div>
 			</nav>
 			<div class="row main_row">

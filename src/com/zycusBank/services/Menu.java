@@ -4,7 +4,10 @@ public class Menu {
 	public static String printMenu(int role) {
 
 		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("<li class=\"nav-item active\">"
+		
+		stringBuilder.append("<ul class=\"navbar-nav mr-auto\">");
+		
+		stringBuilder.append("<li class=\"nav-item\">"
 				+ "<a class=\"nav-link\" href=\"../profile/home\" id=\"home\">Home</a>" + "</li>"
 
 		);
@@ -35,6 +38,14 @@ public class Menu {
 			stringBuilder.append("<li class=\"nav-item\">"
 					+ "<a class=\"nav-link\" href=\"../profile/accounts\" id=\"accounts\">My Accounts</a>" + "</li>");
 		}
+		
+		stringBuilder.append("</ul>");
+		
+		stringBuilder.append("<ul class=\"navbar-nav\">"+
+		"<li class=\"nav-item\">"+
+			"<a class=\"nav-link\" href=\"../logout.do\" id=\"logout\">logout</a>"+
+		"</li>"+
+	"</ul>");
 
 		return stringBuilder.toString();
 
